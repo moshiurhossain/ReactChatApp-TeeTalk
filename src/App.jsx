@@ -1,14 +1,8 @@
-import { useState } from 'react'
-
-import './App.css'
-
-function App() {
-
-
+import React from 'react'
+import app from './firebase.config'
+const App = () => {
   return (
-    <>
- <h1 className='text-red-700'>Hello</h1>
-    </>
+    <><div></div></>
   )
 }
 
