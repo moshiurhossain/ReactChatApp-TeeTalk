@@ -8,12 +8,30 @@ import { FaEyeSlash } from "react-icons/fa";
 const Resgister = () => {
      const [show,setShow]=useState(false)
      const [showconf,setShowconf]=useState(false)
+    //  username error start
      const [userName,setuserName]=useState('')
+     const [userNameError,setuserNameError]=useState('')
+
+     const [useremail,setuseremail]=useState('')
+     const [useremailError,setuseremailError]=useState('')
+
+     const [userpassword,setuserpassword]=useState('')
+     const [userpasswordError,setuserpasswordError]=useState('')
+
+     const [userpasswordconf,setuserpasswordconf]=useState('')
+     const [userpasswordconfError,setuserpasswordconfError]=useState('')
+     
+
+     
 
      const handleSubmit=(e)=>{
       e.preventDefault()
-               console.log(userName)
+      if(!userName) return setuserNameError('You didnt enter your username')
+      if(!useremail) return setuseremailError('You didnt enter your email')
+      if(!userpassword) return setuserpasswordError('You didnt enter your password')
+      if(!userpasswordconf) return setuserpasswordconfError('You password dont match')
      }
+    //  username error end
   return (
     <>
      <section id='signin' className=' w-full h-screen flex items-center bg-[#071d3f] '>
@@ -29,23 +47,26 @@ const Resgister = () => {
                   {/* user name start */}
                   <div className="userinputcontainer">
                    <input
-                   onChange={(e)=>{setuserName(e.target.value)}}
+                   onChange={(e)=>{setuserName(e.target.value),setuserNameError('')}}
                    className='w-[250px] p-1 text-white bg-[#312e2e] rounded-[6px] outline-0 mt-2 placeholder-gray-400' type='text'  placeholder='User Name' />
-                   <p className='text-[#c77070] mt-1'> You didnt enter your username</p>
+                   <p className='text-[#c77070] mt-1'>{userNameError}</p>
                   </div>
                   {/* user name end */}
                 
                {/* email start */}
 
                  <div className='emailinputcontainer w-[250px] rounded-[6px] p-1 '>
-                <input className=' bg-[#312e2e] w-[250px] rounded-[6px] p-1 text-white  outline-0 mt-5 placeholder-gray-400' type='email' placeholder='Email Address' />
-                  <p className='text-[#c77070] mt-1'> You didnt enter your email</p>
+                <input 
+                onChange={(e)=>{setuseremail(e.target.value),setuseremailError('')}}
+                className=' bg-[#312e2e] w-[250px] rounded-[6px] p-1 text-white  outline-0 mt-5 placeholder-gray-400' type='email' placeholder='Email Address' />
+                  <p className='text-[#c77070] mt-1'>{useremailError}</p>
                   </div> 
                  {/* email end */}
                 {/* password start */}
               <div>
                      <div className='w-[250px] bg-[#312e2e]  mt-5 p-1 rounded-[6px] flex justify-between'>
                 <input  
+                onChange={(e)=>{setuserpassword(e.target.value),setuserpasswordError('')}}
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Password'
                 type={show?"text":"password"}  />
@@ -53,7 +74,7 @@ const Resgister = () => {
              
 
                 </div>
-                <p className='text-[#c77070] mt-1'> You didnt enter your password</p>
+                <p className='text-[#c77070] mt-1'> {userpasswordError}</p>
                   
                   </div>
                   {/* password end */}
@@ -61,6 +82,7 @@ const Resgister = () => {
               <div>
                      <div className='w-[250px] bg-[#312e2e]  mt-5 p-1 rounded-[6px] flex justify-between'>
                 <input  
+                onChange={(e)=>{setuserpasswordconf(e.target.value),userpasswordconfError('')}}
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Confirm Password'
                 type={show?"text":"password"}  />
@@ -68,7 +90,7 @@ const Resgister = () => {
              
 
                 </div>
-                <p className='text-[#c77070] mt-1'> You didnt enter your password</p>
+                <p className='text-[#c77070] mt-1'>{userpasswordconfError}</p>
                   
                   </div>
                   {/* confirm-password end */}
