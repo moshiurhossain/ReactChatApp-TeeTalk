@@ -15,12 +15,12 @@ const Singin = () => {
             </div>
             {/* input box starts */}
             <div className="inputbox flex justify-center items-center py-2 mt-2 flex-col">
-            <input className='w-[250px] p-1 bg-amber-50 rounded-[6px] outline-0 mt-2' type="text" name="" id="" />
+            <input className='w-[250px] p-1 bg-amber-50 rounded-[6px] outline-0 mt-2' type="text" placeholder='Email Address' />
             {/* password start */}
             <div className='w-[250px] bg-amber-50 mt-5 p-1 rounded-[6px] flex justify-between'>
             <input  
-            className='   outline-0 ' 
-            type={show?"text":"password"} name="" id="" />
+            className='outline-0' 
+            type={show?"text":"password"} placeholder='Pssword'/>
             <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShow(!show)}}><FaEye /></button>
             </div>
               {/* password end */}
