@@ -7,6 +7,7 @@ import { FaEyeSlash } from "react-icons/fa";
 
 const Resgister = () => {
      const [show,setShow]=useState(false)
+     const [showconf,setShowconf]=useState(false)
      const [userName,setuserName]=useState('')
 
      const handleSubmit=(e)=>{
@@ -63,7 +64,7 @@ const Resgister = () => {
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Confirm Password'
                 type={show?"text":"password"}  />
-                <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShow(!show)}}>{show?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/> }</button>
+                <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShowconf(!showconf)}}>{showconf?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/> }</button>
              
 
                 </div>
