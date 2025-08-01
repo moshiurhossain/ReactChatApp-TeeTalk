@@ -8,9 +8,9 @@ const Resgister = () => {
      const [show,setShow]=useState(false)
   return (
     <>
-     <section id='signin' className=' w-full h-screen '>
-        <div  >
-            <div className='w-[310px] h-[410px] bg-[#dfd3d3] pt-4 mx-auto mt-[100px]'>
+     <section id='signin' className=' w-full h-screen flex items-center bg-[#5587d1] '>
+        
+            <div className='w-[310px] h-[410px] bg-[#dfd3d3] pt-4 mx-auto mt-[100px] rounded-[5px]'>
              
                 <div className="iconbox mx-auto w-[50%] flex items-center justify-center gap-1.5 font-bold text-[20px] mt-[20px]">
                     TeeTalk<RiChatUnreadFill />
@@ -45,7 +45,7 @@ const Resgister = () => {
               
     
             </div>
-        </div>
+        
         </section>
     </>
   )
