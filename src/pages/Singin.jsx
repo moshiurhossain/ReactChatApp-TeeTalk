@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
+import { FaEyeSlash } from "react-icons/fa";
 
 const Singin = () => {
     const [show,setShow]=useState(false)
@@ -21,7 +22,7 @@ const Singin = () => {
             <input  
             className='outline-0' 
             type={show?"text":"password"} placeholder='Password'/>
-            <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShow(!show)}}><FaEye /></button>
+  <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShow(!show)}}>{show?<FaEyeSlash />:<FaEye />}</button>
             </div>
               {/* password end */}
             </div>
