@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
+import { Link } from 'react-router';
 
 const Singin = () => {
     const [show,setShow]=useState(false)
@@ -27,8 +28,9 @@ const Singin = () => {
               {/* input box ends */}
               {/* Button box starts */}
             <div className="buttonbox flex flex-col">
-                <button className='w-[100px] bg-[#186b1c] rounded-[4px] text-white h-[30px] mx-auto mt-[20px]'>SingIn</button>
-            <button className='w-[160px] bg-[#744316] rounded-[4px] text-white h-[30px] mx-auto mt-[20px]'>Create Account</button>
+              <Link className='w-[100px] bg-[#186b1c] py-2 rounded-[4px] text-white h-[30px] mx-auto mt-[20px]   flex items-center justify-center'>SingIn</Link>
+              <Link to='/reg' className='w-[100px] py-2 bg-[#1d81a0] rounded-[4px] text-white h-[30px] mx-auto mt-[20px] flex items-center justify-center' >SignUp</Link>
+
             </div>
              {/* Button box ends */}
           

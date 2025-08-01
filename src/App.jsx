@@ -4,11 +4,13 @@ import Singin from './pages/Singin'
 import { createBrowserRouter, Route, RouterProvider } from 'react-router'
 import { createRoutesFromElements } from 'react-router'
 import LayoutOne from './layout/LayoutOne'
+import Resgister from './pages/Resgister'
 const App = () => {
   const myRoute = createBrowserRouter(createRoutesFromElements(
     <Route>
     <Route path='/' element={<LayoutOne/>}>
          <Route index element={<Singin/>}/>
+         <Route path='/reg' element={<Resgister/>}/>
     </Route>
     </Route>
   ))
