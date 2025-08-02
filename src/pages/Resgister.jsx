@@ -4,6 +4,7 @@ import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
+   import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Resgister = () => {
      const [show,setShow]=useState(false)
@@ -12,36 +13,47 @@ const Resgister = () => {
      const [userName,setuserName]=useState('')
      const [userNameError,setuserNameError]=useState('')
 
-     const [useremail,setuseremail]=useState('')
+     const [email,setuseremail]=useState('')
      const [useremailError,setuseremailError]=useState('')
 
-     const [userpassword,setuserpassword]=useState('')
+     const [password,setuserpassword]=useState('')
      const [userpasswordError,setuserpasswordError]=useState('')
 
      const [userpasswordconf,setuserpasswordconf]=useState('')
      const [userpasswordconfError,setuserpasswordconfError]=useState('')
      
-
+const auth = getAuth();
      
-
      const handleSubmit=(e)=>{
       e.preventDefault()
 
 
 
-
-
-
-
-
-
       // ------------------------------------------------------------------
       if(!userName) return setuserNameError('You didnt enter your username')
-      if(!useremail) return setuseremailError('You didnt enter your email')
-      if(!userpassword) return setuserpasswordError('You didnt enter your password')
+      if(!email) return setuseremailError('You didnt enter your email')
+      if(!password) return setuserpasswordError('You didnt enter your password')
       if(!userpasswordconf) return setuserpasswordconfError('You must enter password')
-        if(userpasswordconf != userpassword) return setuserpasswordconfError('password dont match')
+        if(userpasswordconf != password) return setuserpasswordconfError('password dont match')
       // ------------------------------------------------------------------
+      // -----------------------firebase auth start----------------------------
+   
+
+const auth = getAuth();
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log(userCredential)
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(error)
+    // ..
+  });
+      // -----------------------firebase auth end----------------------------
 
      }
 
@@ -56,8 +68,11 @@ const Resgister = () => {
                     TeeTalk<RiChatUnreadFill />
                 </div>
                  <h1 className='text-center text-[14px] font-bold text-[#56a3c7]'>Registration</h1>
+
+
                 {/* input box starts */}
                 <div className="inputbox flex justify-center items-center py-2 mt-2 flex-col">
+
                   {/* user name start */}
                   <div className="userinputcontainer">
                    <input
@@ -66,6 +81,8 @@ const Resgister = () => {
                    <p className='text-[#c77070] mt-1'>{userNameError}</p>
                   </div>
                   {/* user name end */}
+
+
                 
                {/* email start */}
 
@@ -76,6 +93,9 @@ const Resgister = () => {
                   <p className='text-[#c77070] mt-1'>{useremailError}</p>
                   </div> 
                  {/* email end */}
+
+
+
                 {/* password start */}
               <div>
                      <div className='w-[250px] bg-[#312e2e]  mt-5 p-1 rounded-[6px] flex justify-between'>
@@ -112,8 +132,8 @@ const Resgister = () => {
                   {/* Button box starts */}
                 <div className="buttonbox flex flex-col">
                        <button type='submit' 
-                       className='w-[140px] py-2 bg-[#a07d1d] rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>   Create Account</button> 
-                           <Link to={'/'} className='w-[140px] bg-[#144c7a]   rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn page</Link>
+                       className='w-[140px] py-2 bg-[#a07d1d] rounded-[4px] cursor-pointer text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>   Create Account</button> 
+                           <Link to={'/'} className='w-[140px] bg-[#144c7a]  cursor-pointer rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn page</Link>
              
                          </div>
                  {/* Button box ends */}
