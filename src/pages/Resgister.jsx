@@ -29,7 +29,7 @@ const Resgister = () => {
       if(!userName) return setuserNameError('You didnt enter your username')
       if(!useremail) return setuseremailError('You didnt enter your email')
       if(!userpassword) return setuserpasswordError('You didnt enter your password')
-      if(!userpasswordconf) return setuserpasswordconfError('You password dont match')
+      if(!userpasswordconf) return setuserpasswordconfError('You must enter password')
      }
     //  username error end
   return (
@@ -82,7 +82,7 @@ const Resgister = () => {
               <div>
                      <div className='w-[250px] bg-[#312e2e]  mt-5 p-1 rounded-[6px] flex justify-between'>
                 <input  
-                onChange={(e)=>{setuserpasswordconf(e.target.value),userpasswordconfError('')}}
+                onChange={(e)=>{setuserpasswordconf(e.target.value),setuserpasswordconfError('')}}
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Confirm Password'
                 type={show?"text":"password"}  />
