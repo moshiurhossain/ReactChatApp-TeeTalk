@@ -7,7 +7,7 @@ import { FaEyeSlash } from "react-icons/fa";
 
 const Resgister = () => {
      const [show,setShow]=useState(false)
-     const [showconf,setShowconf]=useState(false)
+     const [cpshow,setcpshow]=useState(false)
     //  username error start
      const [userName,setuserName]=useState('')
      const [userNameError,setuserNameError]=useState('')
@@ -26,11 +26,25 @@ const Resgister = () => {
 
      const handleSubmit=(e)=>{
       e.preventDefault()
+
+
+
+
+
+
+
+
+
+      // ------------------------------------------------------------------
       if(!userName) return setuserNameError('You didnt enter your username')
       if(!useremail) return setuseremailError('You didnt enter your email')
       if(!userpassword) return setuserpasswordError('You didnt enter your password')
       if(!userpasswordconf) return setuserpasswordconfError('You must enter password')
+        if(userpasswordconf != userpassword) return setuserpasswordconfError('password dont match')
+      // ------------------------------------------------------------------
+
      }
+
     //  username error end
   return (
     <>
@@ -85,9 +99,8 @@ const Resgister = () => {
                 onChange={(e)=>{setuserpasswordconf(e.target.value),setuserpasswordconfError('')}}
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Confirm Password'
-                type={show?"text":"password"}  />
-                <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShowconf(!showconf)}}>{showconf?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/> }</button>
-             
+                type={cpshow?"text":"password"}  />
+           <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setcpshow(!cpshow)}}>{cpshow?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/> }</button>             
 
                 </div>
                 <p className='text-[#c77070] mt-1'>{userpasswordconfError}</p>
