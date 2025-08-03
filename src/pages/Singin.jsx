@@ -6,6 +6,19 @@ import { FaEyeSlash } from "react-icons/fa";
 
 const Singin = () => {
     const [show,setShow]=useState(false)
+    // --------------------------------------------------//
+    const [email,setemail]=useState('')
+    const [emailError,setemailError]=useState('')
+    // --------------------------------------------------//
+    const [password,setpassword]=useState('')
+    const [passwordError,setpasswordError]=useState('')
+    // -------------------------------------------------//
+    const handleSubmit=()=>{
+      
+    }
+
+
+
   return (
     
     <section id='signin' className=' w-full h-screen  flex items-center bg-[#071d3f] '>
