@@ -14,7 +14,8 @@ const Singin = () => {
     const [passwordError,setpasswordError]=useState('')
     // -------------------------------------------------//
     const handleSubmit=()=>{
-      
+      e.preventDefault()
+      console.log('done')
     }
 
 
@@ -23,33 +24,44 @@ const Singin = () => {
     
     <section id='signin' className=' w-full h-screen  flex items-center bg-[#071d3f] '>
     
-        <div className='w-[310px] h-[380px] bg-[#02021b] pt-4 mx-auto mt-[100px] rounded-[14px] border-[3px] border-white'>
+        <form onSubmit={handleSubmit} className='w-[310px] py-[60px] bg-[#02021b] pt-4 mx-auto mt-[100px] rounded-[14px] border-[3px] border-white'>
             <div className="iconbox mx-auto w-[50%] flex items-center justify-center gap-1.5 font-bold text-[27px] mt-[30px] text-white">
                 TeeTalk<RiChatUnreadFill />
             </div>
             {/* input box starts */}
             <div className="inputbox flex justify-center items-center py-2 mt-2 flex-col">
-            <input className='w-[250px] p-1 bg-[#312e2e] rounded-[6px] outline-0 mt-2 text-white placeholder-gray-400' type="text" placeholder='Email Address' />
+              {/* email start */}
+            <input
+            onChange={(e)=>{setemail(e.target.value),setemailError('')}}
+            className='w-[250px] p-1 bg-[#312e2e] rounded-[6px] outline-0 mt-2 text-white placeholder-gray-400' 
+            type="text" 
+            placeholder='Email Address' />
+            <p className='text-[#c77070] mt-1'>You must enter your email</p>
+            {/* email end */}
             {/* password start */}
             <div className='w-[250px] bg-[#312e2e] mt-5 p-1 rounded-[6px] flex justify-between'>
             <input  
             className='outline-0 placeholder-gray-400 text-white' 
-            type={show?"text":"password"} placeholder='Password'/>
+            type={show?"text":"password"} 
+            placeholder='Password'/>
   <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShow(!show)}}>{show?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/>}</button>
             </div>
+            <p className='text-[#c77070] mt-1'>You must enter your email</p>
               {/* password end */}
             </div>
               {/* input box ends */}
               {/* Button box starts */}
             <div className="buttonbox flex flex-col">
-              <Link className='w-[140px] py-2 bg-[#1c848b] rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn</Link>
-              <Link to='/reg' className='w-[140px] bg-[#144c7a]   rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center' >SignUp</Link>
+              <button
+              type='submit'
+              className='w-[140px] py-2 bg-[#1c848b] cursor-pointer rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn</button>
+              <Link to='/reg' className='w-[140px] cursor-pointer bg-[#144c7a]   rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center' >SignUp</Link>
 
             </div>
              {/* Button box ends */}
           
 
-        </div>
+        </form>
     
     </section>
 
