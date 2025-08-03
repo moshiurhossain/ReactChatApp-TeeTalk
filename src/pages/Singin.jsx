@@ -13,9 +13,9 @@ const Singin = () => {
     const [password,setpassword]=useState('')
     const [passwordError,setpasswordError]=useState('')
     // -------------------------------------------------//
-    const handleSubmit=(e)=>{
-      e.preventDefault()
-      console.log('done')
+    const handleSubmit=()=>{
+     
+      console.log('Sign-in')
       // -------------------------------
       if(!email) return setemailError('you must enter your email')
       if(!password) return setpasswordError('you must enter your password')

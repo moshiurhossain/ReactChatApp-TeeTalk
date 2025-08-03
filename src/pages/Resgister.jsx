@@ -24,8 +24,8 @@ const Resgister = () => {
      
 const auth = getAuth();
      
-     const handleSubmit=(e)=>{
-      e.preventDefault()
+     const handleSubmit=()=>{
+      console.log('account create initiated ')
 
 
 
@@ -45,6 +45,7 @@ createUserWithEmailAndPassword(auth, email, password)
     // Signed up 
     const user = userCredential.user;
     console.log(userCredential)
+         console.log('account created successfully')
     // ...
   })
   .catch((error) => {
@@ -62,7 +63,7 @@ createUserWithEmailAndPassword(auth, email, password)
     <>
      <section id='signin' className=' w-full h-screen flex items-center bg-[#071d3f] '>
         {/* from start */}
-            <form onSubmit={handleSubmit} className='w-[310px] pb-[50px] bg-[#02021b] pt-4 mx-auto mt-[100px]   rounded-[14px] border-[3px] border-white'>
+            <div  className='w-[310px] pb-[50px] bg-[#02021b] pt-4 mx-auto mt-[100px]   rounded-[14px] border-[3px] border-white'>
              
                 <div className="iconbox mx-auto w-[50%] flex items-center justify-center text-white gap-1.5 font-bold text-[24px]  mt-[20px]">
                     TeeTalk<RiChatUnreadFill />
@@ -132,6 +133,7 @@ createUserWithEmailAndPassword(auth, email, password)
                   {/* Button box starts */}
                 <div className="buttonbox flex flex-col">
                        <button type='submit' 
+                       onClick={handleSubmit}
                        className='w-[140px] py-2 bg-[#a07d1d] rounded-[4px] cursor-pointer text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>   Create Account</button> 
                            <Link to={'/'} className='w-[140px] bg-[#144c7a]  cursor-pointer rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn page</Link>
              
@@ -139,7 +141,7 @@ createUserWithEmailAndPassword(auth, email, password)
                  {/* Button box ends */}
               
     
-            </form>
+            </div>
         
         </section>
     </>
