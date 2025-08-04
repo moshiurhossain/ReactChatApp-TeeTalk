@@ -3,6 +3,7 @@ import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Singin = () => {
     const [show,setShow]=useState(false)
@@ -19,6 +20,20 @@ const Singin = () => {
       // -------------------------------
       if(!email) return setemailError('you must enter your email')
       if(!password) return setpasswordError('you must enter your password')
+    // -------------------------------------------------//
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed up 
+    const user = userCredential.user;
+    console.log('loggedin successfully')
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
     }
 
 
@@ -44,6 +59,7 @@ const Singin = () => {
             {/* password start */}
             <div className='w-[250px] bg-[#312e2e] mt-5 p-1 rounded-[6px] flex justify-between'>
             <input  
+            onChange={(e)=>{setpassword(e.target.value),setpasswordError('')}}
             className='outline-0 placeholder-gray-400 text-white' 
             type={show?"text":"password"} 
             placeholder='Password'/>
