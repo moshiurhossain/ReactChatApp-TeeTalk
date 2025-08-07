@@ -4,9 +4,10 @@ import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, } from "firebase/auth";
 import { cssTransition, Flip, toast, Zoom } from 'react-toastify';
 import { BeatLoader } from 'react-spinners';
+import {  sendEmailVerification } from "firebase/auth";
 
 const Resgister = () => {
      const [show,setShow]=useState(false)
@@ -38,8 +39,8 @@ const auth = getAuth();
       if(!email) return setuseremailError('You didnt enter your email')
       if(!password) return setuserpasswordError('You didnt enter your password')
       if(!userpasswordconf) return setuserpasswordconfError('You must enter password')
-        if(userpasswordconf != password) return setuserpasswordconfError('password dont match')
-       setShowLoading(true)   
+      if(userpasswordconf != password) return setuserpasswordconfError('password dont match')
+                        setShowLoading(true)   
       // ------------------------------------------------------------------
       // -----------------------firebase auth start----------------------------
    
@@ -48,8 +49,9 @@ const auth = getAuth();
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
-    setShowLoading(false)
+    // setShowLoading(false)
     const user = userCredential.user;
+    setShowLoading(false)
     console.log(userCredential)
     console.log('account created successfully')
     // tostify Success start
@@ -64,8 +66,19 @@ createUserWithEmailAndPassword(auth, email, password)
                     theme: "dark",
                     transition: Zoom,
                     });
-      // tostify Success end              
+      // tostify Success end     
+              // send otp start
+           const auth = getAuth();
+  sendEmailVerification(auth.currentUser)
+  .then(() => {
+    // Email verification sent!
+    console.log('otp-sent')
     // ...
+  });
+
+              // send otp end
+    // ...
+    
   })
   .catch((error) => {
     setShowLoading(false)
@@ -98,7 +111,7 @@ createUserWithEmailAndPassword(auth, email, password)
     //  username error end
   return (
     <>
-     <section id='signin' className=' w-full h-screen flex items-center bg-[#071d3f] '>
+     <section id='signin' className=' w-full h-screen flex items-center bg-[#080808] '>
         {/* from start */}
             <div  className='w-[310px] pb-[50px] bg-[#02021b] pt-4 mx-auto mt-[100px]   rounded-[14px] border-[3px] border-white'>
              
