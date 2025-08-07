@@ -5,6 +5,7 @@ import { createBrowserRouter, Route, RouterProvider } from 'react-router'
 import { createRoutesFromElements } from 'react-router'
 import LayoutOne from './layout/LayoutOne'
 import Resgister from './pages/Resgister'
+import { ToastContainer, toast } from 'react-toastify';
 const App = () => {
   const myRoute = createBrowserRouter(createRoutesFromElements(
     <Route>
@@ -16,7 +17,8 @@ const App = () => {
   ))
   return (
     <>
-    <RouterProvider router={myRoute}/>
+       <RouterProvider router={myRoute}/>
+        <ToastContainer />
     </>
   )
 }
