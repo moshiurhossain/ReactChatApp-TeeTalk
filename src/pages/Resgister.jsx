@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { cssTransition, Flip, toast, Zoom } from 'react-toastify';
+import { BeatLoader } from 'react-spinners';
 
 const Resgister = () => {
      const [show,setShow]=useState(false)
@@ -22,6 +23,8 @@ const Resgister = () => {
 
      const [userpasswordconf,setuserpasswordconf]=useState('')
      const [userpasswordconfError,setuserpasswordconfError]=useState('')
+
+     const [showLoading,setShowLoading]=useState(false)
      
 const auth = getAuth();
      
@@ -36,6 +39,7 @@ const auth = getAuth();
       if(!password) return setuserpasswordError('You didnt enter your password')
       if(!userpasswordconf) return setuserpasswordconfError('You must enter password')
         if(userpasswordconf != password) return setuserpasswordconfError('password dont match')
+       setShowLoading(true)   
       // ------------------------------------------------------------------
       // -----------------------firebase auth start----------------------------
    
@@ -44,6 +48,7 @@ const auth = getAuth();
 createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     // Signed up 
+    setShowLoading(false)
     const user = userCredential.user;
     console.log(userCredential)
     console.log('account created successfully')
@@ -63,6 +68,7 @@ createUserWithEmailAndPassword(auth, email, password)
     // ...
   })
   .catch((error) => {
+    setShowLoading(false)
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(error)
@@ -163,9 +169,22 @@ createUserWithEmailAndPassword(auth, email, password)
                   {/* input box ends */}
                   {/* Button box starts */}
                 <div className="buttonbox flex flex-col">
+                  {
+                    showLoading?
+                      <button type='submit' 
+                         onClick={handleSubmit}
+                         className='w-[140px] py-2  rounded-[4px] cursor-progress text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>
+                      <BeatLoader color="#f4e9e9"/></button> 
+                      :
                        <button type='submit' 
                        onClick={handleSubmit}
-                       className='w-[140px] py-2 bg-[#a07d1d] rounded-[4px] cursor-pointer text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>   Create Account</button> 
+                       className='w-[140px] py-2 bg-[#a07d1d] rounded-[4px] cursor-pointer text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>
+                       Create Account</button> 
+                  }
+                     
+                       {/* ------------------------ */}
+                       
+                           {/* ------------------------ */}   
                            <Link to={'/'} className='w-[140px] bg-[#144c7a]  cursor-pointer rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn page</Link>
              
                          </div>

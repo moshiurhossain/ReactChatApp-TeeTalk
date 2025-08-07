@@ -4,7 +4,8 @@ import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { cssTransition, Flip, toast, Zoom } from 'react-toastify';
+import { Flip, toast, Zoom } from 'react-toastify';
+import { BeatLoader } from 'react-spinners';
 
 const Singin = () => {
     const [show,setShow]=useState(false)
