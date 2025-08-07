@@ -4,7 +4,8 @@ import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
-   import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { cssTransition, Flip, toast, Zoom } from 'react-toastify';
 
 const Resgister = () => {
      const [show,setShow]=useState(false)
@@ -45,13 +46,43 @@ createUserWithEmailAndPassword(auth, email, password)
     // Signed up 
     const user = userCredential.user;
     console.log(userCredential)
-         console.log('account created successfully')
+    console.log('account created successfully')
+    // tostify Success start
+                    toast.success('Account created successfully', {
+                    position: "top-center",
+                    autoClose: 4003,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Zoom,
+                    });
+      // tostify Success end              
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(error)
+          // tostify error start
+
+          if(errorCode=='auth/email-already-in-use'){
+                  toast.error(`Email already in use`, {
+          position: "top-center",
+          autoClose: 4003,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Flip,
+          });
+          }
+      
+          // tostify error end
     // ..
   });
       // -----------------------firebase auth end----------------------------

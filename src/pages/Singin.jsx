@@ -4,6 +4,7 @@ import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { cssTransition, Flip, toast, Zoom } from 'react-toastify';
 
 const Singin = () => {
     const [show,setShow]=useState(false)
@@ -16,7 +17,7 @@ const Singin = () => {
     // -------------------------------------------------//
     const handleSubmit=()=>{
      
-      console.log('Sign-in')
+ 
       // -------------------------------
       if(!email) return setemailError('you must enter your email')
       if(!password) return setpasswordError('you must enter your password')
@@ -31,12 +32,41 @@ signInWithEmailAndPassword(auth, email, password)
     const user = userCredential.user;
     console.log(user)
     console.log('signin successful')
+        // tostify Success start
+                        toast.success('Account created successfully', {
+                        position: "top-center",
+                        autoClose: 4003,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Zoom,
+                        });
+          // tostify Success end     
     // ...
   })
   .catch((error) => {
     const errorCode = error.code;
     const errorMessage = error.message;
     console.log(error)
+      // tostify error start
+      // if(errorCode=='auth/email-already-in-use'){
+              toast.error(`${errorCode}`, {
+              position: "top-center",
+              autoClose: 4003,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Flip,
+              });
+      // }
+           
+              // tostify error end
   });
  
     }
