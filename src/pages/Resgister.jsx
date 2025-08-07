@@ -75,7 +75,10 @@ createUserWithEmailAndPassword(auth, email, password)
     console.log('otp-sent')
     // ...
   });
-
+       setuserName('')
+       setuseremail('')
+       setuserpassword('')
+       setuserpasswordconf('')
               // send otp end
     // ...
     
@@ -127,6 +130,7 @@ createUserWithEmailAndPassword(auth, email, password)
                   {/* user name start */}
                   <div className="userinputcontainer">
                    <input
+                   value={userName}
                    onChange={(e)=>{setuserName(e.target.value),setuserNameError('')}}
                    className='w-[250px] p-1 text-white bg-[#312e2e] rounded-[6px] outline-0 mt-2 placeholder-gray-400' type='text'  placeholder='User Name' />
                    <p className='text-[#c77070] mt-1'>{userNameError}</p>
@@ -139,6 +143,7 @@ createUserWithEmailAndPassword(auth, email, password)
 
                  <div className='emailinputcontainer w-[250px] rounded-[6px] p-1 '>
                 <input 
+                value={email}
                 onChange={(e)=>{setuseremail(e.target.value),setuseremailError('')}}
                 className=' bg-[#312e2e] w-[250px] rounded-[6px] p-1 text-white  outline-0 mt-5 placeholder-gray-400' type='email' placeholder='Email Address' />
                   <p className='text-[#c77070] mt-1'>{useremailError}</p>
@@ -151,6 +156,7 @@ createUserWithEmailAndPassword(auth, email, password)
               <div>
                      <div className='w-[250px] bg-[#312e2e]  mt-5 p-1 rounded-[6px] flex justify-between'>
                 <input  
+                value={password}
                 onChange={(e)=>{setuserpassword(e.target.value),setuserpasswordError('')}}
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Password'
@@ -166,7 +172,8 @@ createUserWithEmailAndPassword(auth, email, password)
                 {/* confirm-password start */}
               <div>
                      <div className='w-[250px] bg-[#312e2e]  mt-5 p-1 rounded-[6px] flex justify-between'>
-                <input  
+                <input 
+                value={userpasswordconf} 
                 onChange={(e)=>{setuserpasswordconf(e.target.value),setuserpasswordconfError('')}}
                 className='outline-0 placeholder-gray-400 text-white' 
                 placeholder='Confirm Password'
