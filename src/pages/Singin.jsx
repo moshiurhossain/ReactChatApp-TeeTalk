@@ -34,7 +34,7 @@ signInWithEmailAndPassword(auth, email, password)
     console.log(user)
     console.log('signin successful')
         // tostify Success start
-                        toast.success('Account created successfully', {
+                        toast.success('Signed-in Successfully', {
                         position: "top-center",
                         autoClose: 4003,
                         hideProgressBar: false,
@@ -76,7 +76,7 @@ signInWithEmailAndPassword(auth, email, password)
 
   return (
     
-    <section id='signin' className=' w-full h-screen  flex items-center bg-[#071d3f] '>
+    <section id='signin' className=' w-full h-screen  flex items-center bg-[#080808] '>
     
         <div  className='w-[310px] py-[60px] bg-[#02021b] pt-4 mx-auto mt-[100px] rounded-[14px] border-[3px] border-white'>
             <div className="iconbox mx-auto w-[50%] flex items-center justify-center gap-1.5 font-bold text-[27px] mt-[30px] text-white">
