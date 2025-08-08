@@ -20,11 +20,29 @@ const Singin = () => {
     // const [passwordError,setpasswordError]=useState('')
     // -------------------------------------------------//
     const handleSubmit=()=>{
-     
- 
       // -------------------------------
-      if(!email) return setemailError('you must enter your email')
-      if(!password) return setpasswordError('you must enter your password')
+      if(!formData.email) return toast.error(` Enter your email`, {
+              position: "top-center",
+              autoClose: 4003,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Flip,
+              });
+      if(!formData.password) return toast.error(` Enter your password`, {
+              position: "top-center",
+              autoClose: 4003,
+              hideProgressBar: false,
+              closeOnClick: false,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              transition: Flip,
+              });
     // -------------------------------------------------//
     const auth = getAuth();
     // ------------------------------------------------//
