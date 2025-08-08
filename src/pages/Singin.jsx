@@ -9,12 +9,15 @@ import { BeatLoader } from 'react-spinners';
 
 const Singin = () => {
     const [show,setShow]=useState(false)
+// --------------------------------------------------------//
+    const [formData,setFormData]=useState({email:'',emailError:'',password:'',passwordError:''})
+ 
     // --------------------------------------------------//
-    const [email,setemail]=useState('')
-    const [emailError,setemailError]=useState('')
-    // --------------------------------------------------//
-    const [password,setpassword]=useState('')
-    const [passwordError,setpasswordError]=useState('')
+    // const [email,setemail]=useState('')
+    // const [emailError,setemailError]=useState('')
+    // // --------------------------------------------------//
+    // const [password,setpassword]=useState('')
+    // const [passwordError,setpasswordError]=useState('')
     // -------------------------------------------------//
     const handleSubmit=()=>{
      
@@ -85,23 +88,35 @@ signInWithEmailAndPassword(auth, email, password)
             {/* input box starts */}
             <div className="inputbox flex justify-center items-center py-2 mt-2 flex-col">
               {/* email start */}
+
             <input
-            onChange={(e)=>{setemail(e.target.value),setemailError('')}}
-            className='w-[250px] p-1 bg-[#312e2e] rounded-[6px] outline-0 mt-2 text-white placeholder-gray-400' 
-            type="email" 
-            placeholder='Email Address' />
-            <p className='text-[#c77070] mt-1'>{emailError}</p>
+        // onChange={(e)=>{setemail(e.target.value),setemailError('')}}
+                onChange={(e)=>setFormData((item)=>({...item,email:e.target.value}))}
+                className='w-[250px] p-1 bg-[#312e2e] rounded-[6px] outline-0 mt-2 text-white placeholder-gray-400' 
+                type="email" 
+                placeholder='Email Address' 
+            />
+
+            
+            {/* <p className='text-[#c77070] mt-1'>{emailError}</p> */}
             {/* email end */}
             {/* password start */}
             <div className='w-[250px] bg-[#312e2e] mt-5 p-1 rounded-[6px] flex justify-between'>
+
             <input  
-            onChange={(e)=>{setpassword(e.target.value),setpasswordError('')}}
-            className='outline-0 placeholder-gray-400 text-white' 
-            type={show?"text":"password"} 
-            placeholder='Password'/>
-  <button className=' w-[30px] cursor-pointer p-1 ' onClick={()=>{setShow(!show)}}>{show?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/>}</button>
+                 onChange={(e)=>setFormData((item)=>({...item,password:e.target.value}))}
+        // onChange={(e)=>{setpassword(e.target.value),setpasswordError('')}}
+                className='outline-0 placeholder-gray-400 text-white' 
+                type={show?"text":"password"} 
+                placeholder='Password'
+            />
+  <button 
+      className=' w-[30px] cursor-pointer p-1 ' 
+      onClick={()=>{setShow(!show)}}>{show?<FaEyeSlash className='text-white'/>:<FaEye className='text-white'/>}
+  </button>
             </div>
-            <p className='text-[#c77070] mt-1'>{passwordError}</p>
+            
+            {/* <p className='text-[#c77070] mt-1'>{passwordError}</p> */}
               {/* password end */}
             </div>
               {/* input box ends */}
