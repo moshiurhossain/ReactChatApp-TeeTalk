@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { Flip, toast, Zoom } from 'react-toastify';
@@ -11,7 +11,8 @@ const Singin = () => {
     const [show,setShow]=useState(false)
 // --------------------------------------------------------//
     const [formData,setFormData]=useState({email:'',emailError:'',password:'',passwordError:''})
- 
+    // --------------------------------------------------//
+    const navigate =useNavigate()
     // --------------------------------------------------//
     // const [email,setemail]=useState('')
     // const [emailError,setemailError]=useState('')
@@ -55,6 +56,7 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
     console.log(user)
     console.log('signin successful')
         // tostify Success start
+        if(user.emailVerified==true){
                         toast.success('Signed-in Successfully', {
                         position: "top-center",
                         autoClose: 4003,
@@ -66,6 +68,21 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
                         theme: "dark",
                         transition: Zoom,
                         });
+                        // ---------------------------//
+                        navigate('/layoutTwo/home')
+        }else{
+               toast.info('Please verify your Email', {
+                        position: "top-center",
+                        autoClose: 4003,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        transition: Zoom,
+                        });
+        }
           // tostify Success end     
     // ...
   })
@@ -74,8 +91,9 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
     const errorMessage = error.message;
     console.log(error)
       // tostify error start
-      // if(errorCode=='auth/email-already-in-use'){
-              toast.error(`${errorCode}`, {
+      // if(errorCode=='auth/invalid-credential){
+      
+              toast.error(`Wrong-credentails`, {
               position: "top-center",
               autoClose: 4003,
               hideProgressBar: false,
