@@ -19,7 +19,7 @@ const Singin = () => {
     // const [password,setpassword]=useState('')
     // const [passwordError,setpasswordError]=useState('')
     // -------------------------------------------------//
-    const handleSubmit=()=>{
+    const handleLogin=()=>{
       // -------------------------------
       if(!formData.email) return toast.error(` Enter your email`, {
               position: "top-center",
@@ -48,7 +48,7 @@ const Singin = () => {
     // ------------------------------------------------//
 
 
-signInWithEmailAndPassword(auth, email, password)
+signInWithEmailAndPassword(auth, formData.email, formData.password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
@@ -142,7 +142,7 @@ signInWithEmailAndPassword(auth, email, password)
             <div className="buttonbox flex flex-col">
               <button
               type='submit'
-              onClick={handleSubmit}
+              onClick={handleLogin}
               className='w-[140px] py-2 bg-[#1c848b] cursor-pointer rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center'>SingIn</button>
               <Link to='/reg' className='w-[140px] cursor-pointer bg-[#144c7a]   rounded-[4px] text-white h-[40px] mx-auto mt-[20px] font-semibold  flex items-center justify-center' >SignUp</Link>
 
