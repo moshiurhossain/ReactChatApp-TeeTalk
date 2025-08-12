@@ -5,10 +5,17 @@ import MessageBox from '../components/MessageBox'
 const Home = () => {
   return (
     <>
-    <div className='flex'>
-    <MessageUser/>
-    <MessageBox/>
-    </div>
+  <div className="flex h-screen">
+  {/* User list sidebar */}
+  <div className="w-full lg:w-1/3">
+    <MessageUser />
+  </div>
+
+  {/* Message box */}
+  <div className="hidden lg:flex flex-1">
+    <MessageBox />
+  </div>
+</div>
     </>
   )
 }

@@ -4,21 +4,20 @@ import { IoIosArrowBack } from "react-icons/io";
 
 export default function MessageBox() {
   return (
-    <div className="flex flex-col h-screen w-full">
+    <div className="flex flex-col h-screen w-full lg:flex-1 bg-white">
       {/* Header */}
       <div className="flex items-center p-4 border-b border-gray-300 bg-white">
-        {/* Back button for mobile */}
+        {/* Back button only on mobile */}
         <button className="lg:hidden mr-2 text-gray-600 hover:text-gray-800">
           <IoIosArrowBack size={24} />
         </button>
 
         <FaUserCircle size={32} className="text-gray-600 mr-3" />
-        <h2 className="font-semibold">John Doe</h2>
+        <h2 className="font-semibold truncate">John Doe</h2>
       </div>
 
-      {/* Messages */}
+      {/* Messages area */}
       <div className="flex-1 overflow-y-auto bg-gray-100 p-4 space-y-2">
-        {/* Received message */}
         <div className="flex justify-start">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-white text-gray-800">
             Hey, how are you?
@@ -26,7 +25,6 @@ export default function MessageBox() {
           </div>
         </div>
 
-        {/* Sent message */}
         <div className="flex justify-end">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-green-500 text-white">
             I’m good, thanks! How about you?
@@ -34,7 +32,6 @@ export default function MessageBox() {
           </div>
         </div>
 
-        {/* Received message */}
         <div className="flex justify-start">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-white text-gray-800">
             Doing great 😄
@@ -43,7 +40,7 @@ export default function MessageBox() {
         </div>
       </div>
 
-      {/* Input Bar */}
+      {/* Input bar */}
       <div className="p-3 bg-white border-t border-gray-300 flex items-center">
         <input
           type="text"
