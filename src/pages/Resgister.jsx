@@ -106,6 +106,7 @@ createUserWithEmailAndPassword(auth, email, password)
       
           // tostify error end
     // ..
+    
   });
       // -----------------------firebase auth end----------------------------
 
