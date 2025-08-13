@@ -10,10 +10,17 @@ import { Link } from 'react-router';
 const Navbar = () => {
   return (
     <>
-    <nav className='px-3 py-4 border-r-gray-400 '>
-        <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400'><FaUser /></Link>
+    <nav className='px-3 py-4 border-r-gray-400 bg-gray-100 flex flex-col gap-6 ju'>
+
+        <div>
+        <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400 mt-3'><FaUser /></Link>
         <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400'><TbUserCancel /></Link>
         <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400'><AiOutlineMessage /></Link>
+        </div>
+
+        <div className='profile '>
+
+        </div>
         
 
     </nav>
