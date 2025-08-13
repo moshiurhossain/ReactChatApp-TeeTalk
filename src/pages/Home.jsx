@@ -7,7 +7,7 @@ const Home = () => {
     <>
   <div className="flex h-screen">
   {/* User list sidebar */}
-  <div className="w-full lg:w-1/3">
+  <div className="w-full lg:w-[400px]">
     <MessageUser />
   </div>
 

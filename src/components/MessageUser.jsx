@@ -30,7 +30,7 @@ export default function MessageUser() {
   return (
     <div
       className="
-        w-full lg:w-1/3 
+        lg:w-[400px] w-full
         border-r border-gray-300 
         h-screen flex flex-col
       "
