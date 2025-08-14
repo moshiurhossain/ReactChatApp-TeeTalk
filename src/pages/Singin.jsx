@@ -142,7 +142,7 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
             <input  
                  onChange={(e)=>setFormData((item)=>({...item,password:e.target.value}))}
         // onChange={(e)=>{setpassword(e.target.value),setpasswordError('')}}
-                className='outline-0 placeholder-gray-400 text-white' 
+                className='outline-0 placeholder-gray-400 text-white bg-[#312e2e]' 
                 type={show?"text":"password"} 
                 placeholder='Password'
             />
