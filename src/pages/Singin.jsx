@@ -3,7 +3,7 @@ import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,  } from "firebase/auth";
 import { Flip, toast, Zoom } from 'react-toastify';
 import { BeatLoader } from 'react-spinners';
 

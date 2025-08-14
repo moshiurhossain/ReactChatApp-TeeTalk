@@ -4,7 +4,7 @@ import { RiChatUnreadFill } from "react-icons/ri";
 import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router';
 import { FaEyeSlash } from "react-icons/fa";
-import { getAuth, createUserWithEmailAndPassword, } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { cssTransition, Flip, toast, Zoom } from 'react-toastify';
 import { BeatLoader } from 'react-spinners';
 import {  sendEmailVerification } from "firebase/auth";
@@ -52,9 +52,7 @@ createUserWithEmailAndPassword(auth, email, password)
     // setShowLoading(false)
     const user = userCredential.user;
     setShowLoading(false)
-    console.log(userCredential)
-    console.log('account created successfully')
-    // tostify Success start
+        // tostify Success start
                     toast.success('Account created successfully', {
                     position: "top-center",
                     autoClose: 4003,
@@ -66,9 +64,14 @@ createUserWithEmailAndPassword(auth, email, password)
                     theme: "dark",
                     transition: Zoom,
                     });
-      // tostify Success end     
-              // send otp start
-           const auth = getAuth();
+      // tostify Success end   
+    // set profile pic and user name start
+    updateProfile(auth.currentUser, {
+  displayName: userName, 
+  photoURL: "https://example.com/jane-q-user/profile.jpg"
+}).then(() => {
+  // Profile updated!
+                // send otp start
   sendEmailVerification(auth.currentUser)
   .then(() => {
     // Email verification sent!
@@ -80,6 +83,28 @@ createUserWithEmailAndPassword(auth, email, password)
        setuserpassword('')
        setuserpasswordconf('')
               // send otp end
+  // ...
+}).catch((error) => {
+  // An error occurred
+  // ...
+});
+// set profile pic and user name start
+    console.log(userCredential)
+    console.log('account verification was successfully')
+    // tostify Success start
+                    toast.success('Account verification was successfully', {
+                    position: "top-center",
+                    autoClose: 4003,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Zoom,
+                    });
+      // tostify Success end     
+
     // ...
     
   })
