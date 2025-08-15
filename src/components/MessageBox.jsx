@@ -2,7 +2,11 @@ import React from "react";
 import { FaUserCircle, FaPaperPlane } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 
+
 export default function MessageBox() {
+
+
+
   return (
     <div className="flex flex-col h-screen w-full lg:flex-1 bg-white">
       {/* Header */}
@@ -47,7 +51,7 @@ export default function MessageBox() {
           placeholder="Type a message"
           className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm outline-none focus:border-green-500"
         />
-        <button className="ml-2 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full">
+        <button  className="ml-2 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full">
           <FaPaperPlane size={16} />
         </button>
       </div>
