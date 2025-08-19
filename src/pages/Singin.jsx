@@ -6,6 +6,8 @@ import { FaEyeSlash } from "react-icons/fa";
 import { getAuth, signInWithEmailAndPassword,  } from "firebase/auth";
 import { Flip, toast, Zoom } from 'react-toastify';
 import { BeatLoader } from 'react-spinners';
+import { useDispatch } from 'react-redux';
+import { userInfo } from '../slices/userInfoSlice';
 
 const Singin = () => {
     const [show,setShow]=useState(false)
@@ -13,6 +15,9 @@ const Singin = () => {
     const [formData,setFormData]=useState({email:'',emailError:'',password:'',passwordError:''})
     // --------------------------------------------------//
     const navigate =useNavigate()
+    // sending data to redux start
+    const dispatch = useDispatch()
+    // sending data to redux end
     // --------------------------------------------------//
     // const [email,setemail]=useState('')
     // const [emailError,setemailError]=useState('')
@@ -53,7 +58,9 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log(user)
+    // sending user info to redux userslice
+    dispatch(userInfo(user))
+    // sending user info to redux userslice
     console.log('signin successful')
         // tostify Success start
         if(user.emailVerified==true){
