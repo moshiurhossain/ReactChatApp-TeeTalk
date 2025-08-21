@@ -2,12 +2,17 @@ import React from 'react'
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { TbUserCancel } from "react-icons/tb";
-
-
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router';
 
 
+
+
+
+
 const Navbar = () => {
+  const currentUserInfo= useSelector((state)=>state.currentUserInfo.value)
+  console.log(currentUserInfo)
   return (
     <>
     <nav className='px-3 py-4 border-r-gray-400 bg-gray-100 flex flex-col gap-8 items-center'>
@@ -19,8 +24,9 @@ const Navbar = () => {
         </div>
 
         <div className='profile flex flex-col items-center'>
-              <div className='w-10 h-10 bg-gray-200 rounded-full overflow-hidden'></div>
-              <h2 className='text-[10px] font-normal text-black'>Profile Name</h2>
+              <div className='w-10 h-10 bg-gray-200 rounded-full overflow-hidden'><img src={currentUserInfo.photoURL} alt="profilepic" /></div>
+              <h2 className='text-[10px] font-normal text-black'>{currentUserInfo.displayName
+}</h2>
         </div>
         
 
