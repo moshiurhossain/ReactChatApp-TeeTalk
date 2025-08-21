@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
 
         <div className='profile flex flex-col items-center'>
-              <div className='w-10 h-10 bg-gray-200 rounded-full overflow-hidden'><img src={currentUserInfo?.photoURL} alt="profilepic" /></div>
+              <div className=' '><img className='w-10 h-10 bg-gray-200 rounded-full overflow-hidden' src={currentUserInfo?.photoURL}  /></div>
               <h2 className='text-[10px] font-normal text-black'>{currentUserInfo?.displayName
 }</h2>
         </div>
