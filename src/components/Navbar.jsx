@@ -3,7 +3,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 import { FaUser } from "react-icons/fa";
 import { TbUserCancel } from "react-icons/tb";
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 
 
@@ -18,9 +18,25 @@ const Navbar = () => {
     <nav className='px-3 py-4 border-r-gray-400 bg-gray-100 flex flex-col gap-8 items-center'>
 
         <div className='flex flex-col gap-6'>
-        <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400 mt-3'><FaUser /></Link>
-        <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400'><TbUserCancel /></Link>
-        <Link to='/layoutTwo/home' className='text-lg font-semibold transition-colors hover:text-blue-400'><AiOutlineMessage /></Link>
+        <NavLink to='/layoutTwo/alluser' 
+          className={({ isActive }) =>
+     isActive ? "text-blue-600" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
+                    }
+        ><FaUser /></NavLink>
+
+
+        <NavLink to='/layoutTwo/home'
+             className={({ isActive }) =>
+     isActive ? "text-blue-600" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
+                    }
+         ><TbUserCancel /></NavLink>
+
+
+        <NavLink to='/layoutTwo/home'
+             className={({ isActive }) =>
+     isActive ? "text-blue-600" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
+                    }
+         ><AiOutlineMessage /></NavLink>
         </div>
 
         <div className='profile flex flex-col items-center'>
