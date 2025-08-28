@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const userInfoSlice = createSlice({
   name: 'counter',
   initialState:{
-    value:JSON.parse(localStorage.getItem('currentUserInfo'))
+    value:JSON.parse(localStorage.getItem('currentUserInfo')) || null,
   },
   // initialState: {
   //   value: 0,
