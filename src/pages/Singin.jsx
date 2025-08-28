@@ -59,7 +59,7 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
     // Signed in 
     const user = userCredential.user;
     // store data inlocalstroage
-    localStorage.setItem('currentUserInfo', user)
+    localStorage.setItem('currentUserInfo', JSON.stringify(user))
     // sending user info to redux userslice
     dispatch(userInfo(user))
     // sending user info to redux userslice
