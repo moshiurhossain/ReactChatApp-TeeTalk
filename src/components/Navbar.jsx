@@ -20,21 +20,21 @@ const Navbar = () => {
         <div className='flex flex-col gap-6'>
         <NavLink to='/layoutTwo/alluser' 
           className={({ isActive }) =>
-     isActive ? "text-blue-600" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
+     isActive ? "text-green-500 text-lg font-semibold transition-colors hover:text-blue-400 mt-3" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
                     }
         ><FaUser /></NavLink>
 
 
         <NavLink to='/layoutTwo/home'
              className={({ isActive }) =>
-     isActive ? "text-blue-600" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
+     isActive ? "text-green-500 text-lg font-semibold transition-colors hover:text-blue-400 mt-3" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
                     }
          ><TbUserCancel /></NavLink>
 
 
-        <NavLink to='/layoutTwo/home'
+        <NavLink to='/message'
              className={({ isActive }) =>
-     isActive ? "text-blue-600" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
+     isActive ? "text-green-500 text-lg font-semibold transition-colors hover:text-blue-400 mt-3" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
                     }
          ><AiOutlineMessage /></NavLink>
         </div>
