@@ -8,7 +8,8 @@ import Resgister from './pages/Resgister'
 import { ToastContainer, toast } from 'react-toastify';
 import LayoutTwo from './layout/LayoutTwo'
 import Home from './pages/Home'
-import AllUsers from './pages/AllUsers'
+import ChatSidebar from './pages/ChatSidebar'
+
 
 const App = () => {
   const myRoute = createBrowserRouter(createRoutesFromElements(
@@ -20,7 +21,7 @@ const App = () => {
 
             <Route path='/layoutTwo' element={<LayoutTwo/>}>
                 <Route path='/layoutTwo/home' element={<Home/>}/>
-                <Route path='/layoutTwo/alluser' element={<AllUsers/>}/>
+                <Route path='/layoutTwo/alluser' element={<ChatSidebar/>}/>
             </Route>
           
     </Route>
