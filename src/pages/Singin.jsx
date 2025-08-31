@@ -8,9 +8,12 @@ import { Flip, toast, Zoom } from 'react-toastify';
 import { BeatLoader } from 'react-spinners';
 import { useDispatch } from 'react-redux';
 import { userInfo } from '../slices/userInfoSlice';
+import { getDatabase, ref, set } from "firebase/database";
 
 const Singin = () => {
     const [show,setShow]=useState(false)
+    // bd realtime firebase
+    const db = getDatabase();
 // --------------------------------------------------------//
     const [formData,setFormData]=useState({email:'',emailError:'',password:'',passwordError:''})
     // --------------------------------------------------//
@@ -79,6 +82,14 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
                         });
                         // ---------------------------//
                         navigate('/layoutTwo/home')
+                        // send data to firebase realtime db start
+                          set(ref(db, 'allUsers/' ), {
+                              username: 'name',
+                              email: 'email',
+                              profile_picture : 'imageUrl'
+                            });
+                             
+                        // send data to firebase realtime db end
         }else{
                toast.info('Please verify your Email', {
                         position: "top-center",
