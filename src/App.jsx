@@ -8,7 +8,8 @@ import Resgister from './pages/Resgister'
 import { ToastContainer, toast } from 'react-toastify';
 import LayoutTwo from './layout/LayoutTwo'
 import Home from './pages/Home'
-import ChatSidebar from './pages/ChatSidebar'
+import AllUserList from './pages/AllUserList'
+
 
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
 
             <Route path='/layoutTwo' element={<LayoutTwo/>}>
                 <Route path='/layoutTwo/home' element={<Home/>}/>
-                <Route path='/layoutTwo/alluser' element={<ChatSidebar/>}/>
+                <Route path='/layoutTwo/alluser' element={<AllUserList/>}/>
             </Route>
           
     </Route>
