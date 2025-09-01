@@ -8,7 +8,7 @@ import { Flip, toast, Zoom } from 'react-toastify';
 import { BeatLoader } from 'react-spinners';
 import { useDispatch } from 'react-redux';
 import { userInfo } from '../slices/userInfoSlice';
-import { getDatabase, ref, set } from "firebase/database";
+import { getDatabase, push, ref, set } from "firebase/database";
 
 const Singin = () => {
     const [show,setShow]=useState(false)
@@ -83,10 +83,10 @@ signInWithEmailAndPassword(auth, formData.email, formData.password)
                         // ---------------------------//
                         navigate('/layoutTwo/home')
                         // send data to firebase realtime db start
-                          set(ref(db, 'allUsers/' ), {
-                              username: 'name',
-                              email: 'email',
-                              profile_picture : 'imageUrl'
+                          set(ref(db, 'allUsers/' + user.uid ), {
+                              username: user.displayName,
+                              email: user.email,
+                              profile_picture : user.photoURL,
                             });
                              
                         // send data to firebase realtime db end
