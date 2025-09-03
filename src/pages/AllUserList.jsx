@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { getDatabase, ref, onValue } from "firebase/database";
 import UserCard from '../components/UserCard';
+import { useSelector } from 'react-redux';
 
 
 
 const AllUserList = () => {
  
   const [allUsers,setAllUsers] =useState([])
+  const currentUserInfo =useSelector((state)=>state.currentUserInfo.value)
   
   const db = getDatabase();
   useEffect(()=>{
@@ -21,7 +23,8 @@ const AllUserList = () => {
    
 
       allUserdata.forEach((item)=>{
-        myArray.push(item.val())
+        if(item.key!=currentUserInfo.uid){
+        myArray.push(item.val())}
       })
    setAllUsers(myArray)
 });
