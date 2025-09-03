@@ -1,27 +1,47 @@
-import React from 'react'
-import { getDatabase, push, ref, set } from "firebase/database";
+import React, { useEffect, useState } from 'react'
+import { getDatabase, ref, onValue } from "firebase/database";
+import UserCard from '../components/UserCard';
+
+
 
 const AllUserList = () => {
-     const db = getDatabase();
-     const handelrealtimeDatabase  =  ()=>{
-
-           set(push(ref(db, 'users/' )), {
-    user2: 'this is user2',
  
-  });
-     }
+  const [allUsers,setAllUsers] =useState([])
+  
+  const db = getDatabase();
+  useEffect(()=>{
+
+
+
+    const allUsershowData = ref(db, 'allUsers' );
+
+    onValue(allUsershowData, (allUserdata) => {
+
+    let myArray =[]
+   
+
+      allUserdata.forEach((item)=>{
+        myArray.push(item.val())
+      })
+   setAllUsers(myArray)
+});
+
+
+
+  },[])
+
   return (
     <>
-    <div className='h-screen p-[20px]'>
-        <h1>All users</h1>
-        <div className=' flex justify-evenly '>
+    <div className='h-screen  p-[20px]'>
+        <h1 className='text-lg font-semibold mb-4'>All Users</h1>
+    
+  
 
-        <div className='flex w-[240px] h-[60px] bg-[#a59d9d] items-center'>
-           
-           <button onClick={handelrealtimeDatabase} className='w-[40px] h-[40px] rounded-full bg-[#d4cbcb] cursor-pointer'>+</button>
-        </div>
-
-        </div>
+  {
+    allUsers.map((item)=>(<UserCard/>))
+  }
+ 
+     
     </div>
     
     </>
