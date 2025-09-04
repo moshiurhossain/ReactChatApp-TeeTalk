@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 
-const UserCard = ({userName,userAvatar,userEmail}) => {
+const UserCard = ({userName,userAvatar,userEmail,addUser}) => {
   return (
         <div className="flex items-center w-[270px] m-4 justify-between p-2 bg-white shadow rounded-xl hover:bg-gray-50 transition cursor-pointer">
       {/* Left: Avatar + Info */}
@@ -19,7 +19,7 @@ const UserCard = ({userName,userAvatar,userEmail}) => {
       </div>
 
       {/* Right: Plus button */}
-      <button className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full">
+      <button onClick={addUser} className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full">
         <FaPlus size={14} />
       </button>
     </div>

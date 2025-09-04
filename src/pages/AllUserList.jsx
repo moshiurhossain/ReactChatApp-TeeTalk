@@ -6,32 +6,31 @@ import { useSelector } from 'react-redux';
 
 
 const AllUserList = () => {
- 
+//  show all user code start
   const [allUsers,setAllUsers] =useState([])
   const currentUserInfo =useSelector((state)=>state.currentUserInfo.value)
-  
   const db = getDatabase();
   useEffect(()=>{
 
-
-
     const allUsershowData = ref(db, 'allUsers' );
-
     onValue(allUsershowData, (allUserdata) => {
-
     let myArray =[]
    
-
       allUserdata.forEach((item)=>{
         if(item.key!=currentUserInfo.uid){
         myArray.push(item.val())}
       })
    setAllUsers(myArray)
 });
-
-
-
   },[])
+//  show all user code end
+// add user start 
+const handleAdd =()=>{
+console.log(' thik ase')
+}
+// add user end
+
+
  console.log(allUsers)
   return (
     <>
@@ -46,6 +45,7 @@ const AllUserList = () => {
     userName={item.username}
     userEmail={item.email}
     userAvatar={item.profile_picture}
+    addUser={handleAdd}
     />))
   }
  
