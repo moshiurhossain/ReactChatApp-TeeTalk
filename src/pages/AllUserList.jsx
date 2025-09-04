@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, push, set } from "firebase/database";
 import UserCard from '../components/UserCard';
 import { useSelector } from 'react-redux';
 
@@ -18,15 +18,27 @@ const AllUserList = () => {
    
       allUserdata.forEach((item)=>{
         if(item.key!=currentUserInfo.uid){
-        myArray.push(item.val())}
+        myArray.push({userData:item.val(),userID:item.key})
+        }
       })
    setAllUsers(myArray)
 });
   },[])
 //  show all user code end
 // add user start 
-const handleAdd =()=>{
-console.log(' thik ase')
+const handleAdd =(user)=>{
+  set(push(ref(db, 'chatUser/')), {
+   senderID: currentUserInfo.uid,
+   senderName: currentUserInfo.displayName,
+   senderPhoto: currentUserInfo.photoURL,
+
+   adderId: user.userID,
+   adderName: user.userData.username,
+   adderAvatar: user.userData.profile_picture,
+  
+   
+  });
+  console.log(user)
 }
 // add user end
 
@@ -40,12 +52,13 @@ console.log(' thik ase')
   
 
   {
-    allUsers.map((item)=>(
+    allUsers.map((item,indexkey)=>(
     <UserCard
-    userName={item.username}
-    userEmail={item.email}
-    userAvatar={item.profile_picture}
-    addUser={handleAdd}
+    key={indexkey}
+    userName={item.userData.username}
+    userEmail={item.userData.email}
+    userAvatar={item.userData.profile_picture}
+    addUser={()=>handleAdd(item)}
     />))
   }
  

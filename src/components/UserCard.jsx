@@ -19,7 +19,7 @@ const UserCard = ({userName,userAvatar,userEmail,addUser}) => {
       </div>
 
       {/* Right: Plus button */}
-      <button onClick={addUser} className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full">
+      <button onClick={addUser} className="bg-green-500 hover:bg-green-600 text-white p-2 rounded-full cursor-pointer">
         <FaPlus size={14} />
       </button>
     </div>
