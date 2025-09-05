@@ -26,14 +26,14 @@ const AllUserList = () => {
 
 onValue(ref(db, 'chatUser'),(snapshot) => {
  snapshot.forEach((item)=>{
-  let myarr =[]
-  if(item.val().senderID == currentUserInfo.uid){
-     myarr.push(item.val())
-  }
+              let myarr =[]
+           if(item.val().senderID == currentUserInfo.uid){
+           myarr.push(item.val())
+             }
+ 
+                         })
   setAddUserList(myarr)
- })
-}
-)
+        })
 
 
   },[])
@@ -51,12 +51,12 @@ const handleAdd =(user)=>{
   
    
   });
-  console.log(user)
+ 
 }
 // add user end
 
 
- console.log(allUsers)
+ 
   return (
     <>
     <div className='h-screen  p-[20px]'>
