@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 const AllUserList = () => {
 //  show all user code start
   const [allUsers,setAllUsers] =useState([])
+  const [addUserList,setAddUserList]=useState([])
   const currentUserInfo =useSelector((state)=>state.currentUserInfo.value)
   const db = getDatabase();
   useEffect(()=>{
@@ -15,7 +16,6 @@ const AllUserList = () => {
     const allUsershowData = ref(db, 'allUsers' );
     onValue(allUsershowData, (allUserdata) => {
     let myArray =[]
-   
       allUserdata.forEach((item)=>{
         if(item.key!=currentUserInfo.uid){
         myArray.push({userData:item.val(),userID:item.key})
@@ -23,6 +23,19 @@ const AllUserList = () => {
       })
    setAllUsers(myArray)
 });
+
+onValue(ref(db, 'chatUser'),(snapshot) => {
+ snapshot.forEach((item)=>{
+  let myarr =[]
+  if(item.val().senderID == currentUserInfo.uid){
+     myarr.push(item.val())
+  }
+  setAddUserList(myarr)
+ })
+}
+)
+
+
   },[])
 //  show all user code end
 // add user start 
