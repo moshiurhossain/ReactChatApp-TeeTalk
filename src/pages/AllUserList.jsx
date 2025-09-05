@@ -69,13 +69,18 @@ const handleAdd =(user)=>{
 
   {
     allUsers.map((item,indexkey)=>(
-    <UserCard
-    key={indexkey}
-    userName={item.userData.username}
-    userEmail={item.userData.email}
-    userAvatar={item.userData.profile_picture}
-    addUser={()=>handleAdd(item)}
-    />))
+      // addUserList.map((item2)=>{
+      //   console.log(item),
+      //   console.log(item2)
+      // })
+       <UserCard
+       key={indexkey}
+       userName={item.userData.username}
+       userEmail={item.userData.email}
+       userAvatar={item.userData.profile_picture}
+       addUser={()=>handleAdd(item)}
+       />
+    ))
   }
  
      
