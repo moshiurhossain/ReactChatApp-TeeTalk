@@ -10,6 +10,8 @@ import { useSelector } from "react-redux";
 export default function MessageBox() {
         
 const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
+const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
+console.log(chatuser)
  
  console.log(currentUserInfo?.displayName)
 
@@ -25,7 +27,7 @@ const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
         </button>
 
         <FaUserCircle size={32} className="text-gray-600 mr-3" />
-        <h2 className="font-semibold truncate">{currentUserInfo?.displayName}</h2>
+        <h2 className="font-semibold truncate">{chatuser?.friendName}</h2>
       </div>
 
       {/* Messages area */}
