@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set } from "firebase/database";
 import { useSelector } from "react-redux";
 const users = [
   {
@@ -17,18 +17,26 @@ const users = [
 export default function MessageUser() {
   const db = getDatabase();
   const currentUserInfo =useSelector((state)=>state.currentUserInfo.value)
+  const [chatList,setChatList]=useState([])
+  //  ----------
   useEffect(()=>{
-
+  //  ----------
 onValue(ref(db,'chatUser'), (snapshot) => {
- console.log(snapshot.val())
+console.log(snapshot.val())
+ //  ----------
  let myArray =[]
+ //  ----------
  snapshot.forEach((item)=>{
   if(item.val().senderID== currentUserInfo.uid){
     myArray.push({friendId:item.val().adderId,friendpic:item.val().adderAvatar,friendName:item.val().adderName})
-  }else if(item.val().adderId== currentUserInfo.uid){
+  }
+   if(item.val().adderId== currentUserInfo.uid){
    myArray.push({friendId:item.val().senderID,friendpic:item.val().senderPhoto,friendName:item.val().senderName})
   }
  })
+ //  ----------
+setChatList(myArray)
+ //  ----------
 });
   },[])
   return (
