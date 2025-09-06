@@ -20,6 +20,6 @@ export const userInfoSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { userInfo } = userInfoSlice.actions
+export const { userInfo,selectChatuserInfo } = userInfoSlice.actions
 
 export default userInfoSlice.reducer
