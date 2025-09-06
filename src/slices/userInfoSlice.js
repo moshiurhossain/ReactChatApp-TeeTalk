@@ -4,15 +4,17 @@ export const userInfoSlice = createSlice({
   name: 'counter',
   initialState:{
     value:JSON.parse(localStorage.getItem('currentUserInfo')) || null,
+    chatuser:null,
   },
-  // initialState: {
-  //   value: 0,
-  // },
+
   reducers: {
 
   userInfo:(state,action)=>{
      state.value=action.payload      
-  }
+  },
+  selectChatuserInfo:(state,action)=>{
+    state.chatuser = action.payload
+  },
 
   },
 })

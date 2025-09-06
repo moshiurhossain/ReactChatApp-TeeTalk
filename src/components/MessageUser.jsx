@@ -75,7 +75,7 @@ setChatList(myArray)
             key={i}
             className="
               flex items-center p-3 
-              hover:bg-gray-100 cursor-pointer 
+              hover:bg-blue-300 cursor-pointer 
               border-b border-gray-200
             "
           >
