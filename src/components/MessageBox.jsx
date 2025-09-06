@@ -18,7 +18,10 @@ console.log(chatuser)
 
 
   return (
-    <div className="flex flex-col h-screen w-full lg:flex-1 bg-white">
+    <>
+    {
+      chatuser?
+        <div className="flex flex-col h-screen w-full lg:flex-1 bg-gray-200">
       {/* Header */}
       <div className="flex items-center p-4 border-b border-gray-300 bg-white">
         {/* Back button only on mobile */}
@@ -68,5 +71,13 @@ console.log(chatuser)
         </button>
       </div>
     </div>
+      :
+  <div className="h-screen w-full lg:flex-1 flex items-center justify-center bg-blue-100">
+      <h1 className="font-bold text-white text-2xl">Select an user to chat</h1>
+    </div>
+    }
+  
+  
+    </>
   );
 }
