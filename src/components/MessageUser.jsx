@@ -70,9 +70,9 @@ setChatList(myArray)
 
       {/* User List */}
       <div className="flex-1 overflow-y-auto bg-white">
-        {users.map((user) => (
+        {chatList.map((user,i) => (
           <div
-            key={user.id}
+            key={i}
             className="
               flex items-center p-3 
               hover:bg-gray-100 cursor-pointer 
@@ -85,21 +85,12 @@ setChatList(myArray)
             />
             <div className="flex-1 min-w-0">
               <div className="flex justify-between items-center">
-                <h2 className="text-sm font-semibold truncate">{user.name}</h2>
+                <h2 className="text-sm font-semibold truncate">{user.friendName}</h2>
                 <span className="text-xs text-gray-500 ml-2 flex-shrink-0">
-                  {user.time}
+               
                 </span>
               </div>
-              <div className="flex justify-between items-center">
-                <p className="text-xs text-gray-600 truncate w-48">
-                  {user.lastMessage}
-                </p>
-                {user.unread > 0 && (
-                  <span className="bg-green-500 text-white text-xs rounded-full px-2 py-0.5 flex-shrink-0">
-                    {user.unread}
-                  </span>
-                )}
-              </div>
+         
             </div>
           </div>
         ))}
