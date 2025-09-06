@@ -4,7 +4,7 @@ export const userInfoSlice = createSlice({
   name: 'counter',
   initialState:{
     value:JSON.parse(localStorage.getItem('currentUserInfo')) || null,
-    chatuser:null,
+    chatuser:JSON.parse(localStorage.getItem('chatuser')) || null,
   },
 
   reducers: {

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { IoSearchOutline } from "react-icons/io5";
 import { getDatabase, ref, onValue, set } from "firebase/database";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectChatuserInfo } from "../slices/userInfoSlice";
 const users = [
   {
     id: 1,
@@ -18,6 +19,7 @@ export default function MessageUser() {
   const db = getDatabase();
   const currentUserInfo =useSelector((state)=>state.currentUserInfo.value)
   const [chatList,setChatList]=useState([])
+  const dispatch = useDispatch()
   //  ----------
   useEffect(()=>{
   //  ----------
@@ -39,6 +41,11 @@ setChatList(myArray)
  //  ----------
 });
   },[])
+ //  ----------
+ const handleSelect =(data)=>{
+ dispatch(selectChatuserInfo(data))
+ localStorage.setItem('chatuser',JSON.stringify(data))
+ }
   return (
     <div
       className="
@@ -71,7 +78,7 @@ setChatList(myArray)
       {/* User List */}
       <div className="flex-1 overflow-y-auto bg-white">
         {chatList.map((user,i) => (
-          <div
+          <div onClick={()=>handleSelect(user)}
             key={i}
             className="
               flex items-center p-3 
