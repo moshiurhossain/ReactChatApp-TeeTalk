@@ -36,16 +36,14 @@ console.log(chatuser)
         <FaUserCircle size={32} className="text-gray-600 mr-3" />
         <h2 className="font-semibold truncate">{chatuser?.friendName}</h2>
         </div>
-      
-        <button 
-        onClick={()=>setShowBlock(!showBlock)}
-        className="relative cursor-pointer">
-          {showBlock &&
-             <button className="px-5 py-1 font-medium border-white border-2 bg-gray-200 text-base absolute bottom-[-39px] right-0 rounded-xl cursor-pointer">Block</button>
-          }
-          <BsThreeDotsVertical />
-       
-          </button>
+      <div className="relative">
+        <button onClick={()=>setShowBlock(!showBlock)}
+        className=" cursor-pointer"><BsThreeDotsVertical /></button>
+
+         {showBlock &&
+<button className="px-5 py-1 font-medium border-white border-2 bg-gray-200 text-base absolute bottom-[-39px] right-0 rounded-xl cursor-pointer">Block</button>
+         }
+      </div>    
       </div>
 
       {/* Messages area */}
