@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaUserCircle, FaPaperPlane } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { useSelector } from "react-redux";
@@ -13,6 +13,7 @@ export default function MessageBox() {
         
 const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
 const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
+const [showBlock,setShowBlock]=useState(false)
 console.log(chatuser)
  
  console.log(currentUserInfo?.displayName)
@@ -25,7 +26,7 @@ console.log(chatuser)
       chatuser?
         <div className="flex flex-col h-screen w-full lg:flex-1 bg-gray-200">
       {/* Header */}
-      <div className="flex justify-between items-center p-4 border-b border-gray-300 bg-blue-200">
+      <div className="flex justify-between items-center p-4 border-b border-gray-300 ">
         {/* Back button only on mobile */}
         <div className="flex">
   <button className="lg:hidden mr-2 text-gray-600 hover:text-gray-800">
@@ -36,9 +37,14 @@ console.log(chatuser)
         <h2 className="font-semibold truncate">{chatuser?.friendName}</h2>
         </div>
       
-        <button className="relative cursor-pointer">
+        <button 
+        onClick={()=>setShowBlock(!showBlock)}
+        className="relative cursor-pointer">
+          {showBlock &&
+             <button className="px-5 py-1 font-medium border-white border-2 bg-gray-200 text-base absolute bottom-[-39px] right-0 rounded-xl cursor-pointer">Block</button>
+          }
           <BsThreeDotsVertical />
-          <button className="px-5 py-1 font-medium bg-gray-200 text-base absolute bottom-[-35px] right-0 rounded-xl cursor-pointer">Block</button>
+       
           </button>
       </div>
 
