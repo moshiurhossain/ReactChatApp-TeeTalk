@@ -4,19 +4,33 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-
+import { getDatabase, push, ref, set } from "firebase/database";
 
 
 
 
 export default function MessageBox() {
+const db = getDatabase();
         
 const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
 const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
 const [showBlock,setShowBlock]=useState(false)
 console.log(chatuser)
  
- console.log(currentUserInfo?.displayName)
+console.log(currentUserInfo?.displayName)
+
+ const handleBlock =()=>{
+  set(push(ref(db, 'blockUserList/')),{
+    blockUserName:      chatuser.friendName,
+    blockUserId:        chatuser.friendId,
+    blockUserPicture:   chatuser.friendpic,
+
+    blockerID:     currentUserInfo.uid,
+    blockerName:   currentUserInfo.displayName,
+
+  })
+  console.log('block')
+ }
 
 
 
@@ -40,9 +54,11 @@ console.log(chatuser)
         <button onClick={()=>setShowBlock(!showBlock)}
         className=" cursor-pointer"><BsThreeDotsVertical /></button>
 
-         {showBlock &&
-<button className="px-5 py-1 font-medium border-white border-2 bg-gray-200 text-base absolute bottom-[-39px] right-0 rounded-xl cursor-pointer">Block</button>
-         }
+                    {showBlock &&
+                    <button
+                    onClick={handleBlock}
+                    className="px-5 py-1 font-medium border-white border-2 bg-gray-200 text-base absolute bottom-[-39px] right-0 rounded-xl cursor-pointer">Block</button>
+                    }
       </div>    
       </div>
 
