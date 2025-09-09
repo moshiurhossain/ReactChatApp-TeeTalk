@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaUserCircle, FaPaperPlane } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 import { getDatabase, push, ref, remove, set } from "firebase/database";
@@ -16,6 +16,7 @@ const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
 const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
 
 const [showBlock,setShowBlock]=useState(false)
+const dispatch = useDispatch()
 console.log(chatuser)
  
 console.log(currentUserInfo?.displayName)
@@ -31,6 +32,8 @@ console.log(currentUserInfo?.displayName)
 
   })
   remove(ref(db,'chatUser/' + chatuser.conversationId))
+  localStorage.removeItem('chatuser')
+  dispatch(selectChatuserInfo(null))
  }
 
 
