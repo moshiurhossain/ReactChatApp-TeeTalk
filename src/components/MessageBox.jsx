@@ -4,7 +4,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-import { getDatabase, push, ref, set } from "firebase/database";
+import { getDatabase, push, ref, remove, set } from "firebase/database";
 
 
 
@@ -14,6 +14,7 @@ const db = getDatabase();
         
 const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
 const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
+
 const [showBlock,setShowBlock]=useState(false)
 console.log(chatuser)
  
@@ -26,10 +27,10 @@ console.log(currentUserInfo?.displayName)
     blockUserPicture:   chatuser.friendpic,
 
     blockerID:     currentUserInfo.uid,
-    blockerName:   currentUserInfo.displayName,
+   
 
   })
-  console.log('block')
+  remove(ref(db,'chatUser/' + chatuser.conversationId))
  }
 
 

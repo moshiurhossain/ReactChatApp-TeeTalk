@@ -30,10 +30,11 @@ console.log(snapshot.val())
  //  ----------
  snapshot.forEach((item)=>{
   if(item.val().senderID== currentUserInfo.uid){
-    myArray.push({friendId:item.val().adderId,friendpic:item.val().adderAvatar,friendName:item.val().adderName})
+    myArray.push({friendId:item.val().adderId,friendpic:item.val().adderAvatar,friendName:item.val().adderName, conversationId:item.key })
+    console.log(item.key)
   }
    if(item.val().adderId== currentUserInfo.uid){
-   myArray.push({friendId:item.val().senderID,friendpic:item.val().senderPhoto,friendName:item.val().senderName})
+   myArray.push({friendId:item.val().senderID,friendpic:item.val().senderPhoto,friendName:item.val().senderName, conversationId:item.key })
   }
  })
  //  ----------
