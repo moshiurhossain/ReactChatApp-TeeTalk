@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { MdBlock } from "react-icons/md";
-import { getDatabase, ref, onValue } from "firebase/database";
+import { getDatabase, ref, onValue, set, push, remove } from "firebase/database";
 import { useSelector } from 'react-redux';
 import { userInfo } from '../slices/userInfoSlice';
 
 const BlockedUser = () => {
     const db = getDatabase();
     const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
+    console.log(currentUserInfo)
     const [blockUser,setBlockUser] =useState([])
     useEffect(()=>{
        onValue(ref(db, 'blockUserList/'),(snapshot)=>{
@@ -21,6 +22,21 @@ const BlockedUser = () => {
        })
     },[])
 console.log(blockUser)
+// 
+const handleUnblock =(unblockInfo)=>{
+     set(push(ref(db, 'chatUser/')), {
+       
+       senderID: currentUserInfo.uid,
+       senderName: currentUserInfo.displayName,
+       senderPhoto: currentUserInfo.photoURL,
+    
+       adderId: unblockInfo.blockUserId,
+       adderName: unblockInfo.blockUserName,
+       adderAvatar:unblockInfo.blockUserPicture, 
+
+      });
+      remove(ref(db,'blockUserList/' + unblockInfo.key))
+}
   return (
     <>
     <div className=' p-6 gap-5'>
@@ -36,7 +52,7 @@ console.log(blockUser)
                 <h3 className='text-base font-normal text-gray-300'>{item.userInfo.blockUserId}</h3>
             </div>
            </div>
-           <button className='text-4xl text-green-400'><MdBlock /></button>
+           <button onClick={()=>handleUnblock(item)} className='cursor-pointer text-4xl text-green-400'><MdBlock /></button>
       </div>
             ))
         }
