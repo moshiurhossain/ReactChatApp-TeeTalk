@@ -9,6 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import LayoutTwo from './layout/LayoutTwo'
 import Home from './pages/Home'
 import AllUserList from './pages/AllUserList'
+import BlockedUser from './pages/BlockedUser'
 
 
 
@@ -23,6 +24,7 @@ const App = () => {
             <Route path='/layoutTwo' element={<LayoutTwo/>}>
                 <Route path='/layoutTwo/home' element={<Home/>}/>
                 <Route path='/layoutTwo/alluser' element={<AllUserList/>}/>
+                <Route path='/layoutTwo/blocked' element={<BlockedUser/>}/>
             </Route>
           
     </Route>

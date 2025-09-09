@@ -15,7 +15,7 @@ const Navbar = () => {
   console.log(currentUserInfo)
   return (
     <>
-    <nav className='px-3 py-4 border-r-gray-400 bg-gray-100 flex flex-col gap-8 items-center'>
+    <nav className='px-3 py-4 border-r-gray-400 bg-gray-100 flex flex-col gap-8 items-center h-[100vh]'>
 
         <div className='flex flex-col gap-6'>
         <NavLink to='/layoutTwo/alluser' 
@@ -25,14 +25,14 @@ const Navbar = () => {
         ><FaUser /></NavLink>
 
 
-        <NavLink to='/layoutTwo/home'
+        <NavLink to='/layoutTwo/blocked'
              className={({ isActive }) =>
      isActive ? "text-green-500 text-lg font-semibold transition-colors hover:text-blue-400 mt-3" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
                     }
          ><TbUserCancel /></NavLink>
 
 
-        <NavLink to='/message'
+        <NavLink to='/layoutTwo/home'
              className={({ isActive }) =>
      isActive ? "text-green-500 text-lg font-semibold transition-colors hover:text-blue-400 mt-3" : "text-lg font-semibold transition-colors hover:text-blue-400 mt-3"
                     }
