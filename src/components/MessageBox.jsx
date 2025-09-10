@@ -13,31 +13,38 @@ export default function MessageBox() {
 const db = getDatabase();
         
 const currentUserInfo = useSelector((state)=>state.currentUserInfo.value)
-const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
+const chatUserInfo = useSelector((state)=>state.currentUserInfo.chatuser)
 
 const [showBlock,setShowBlock]=useState(false)
 const dispatch = useDispatch()
-console.log(chatuser)
- 
-console.log(currentUserInfo?.displayName)
-
- const handleBlock =()=>{
+// Block function start
+const chatuser = useSelector((state)=>state.currentUserInfo.chatuser)
+//  Block Button
+const handleBlock =()=>{
   set(push(ref(db, 'blockUserList/')),{
     blockUserName:      chatuser.friendName,
     blockUserId:        chatuser.friendId,
     blockUserPicture:   chatuser.friendpic,
-
+    
     blockerID:     currentUserInfo.uid,
-   
-
+    
   })
+  // Delete From ChatUser collection
   remove(ref(db,'chatUser/' + chatuser.conversationId))
   localStorage.removeItem('chatuser')
   dispatch(selectChatuserInfo(null))
- }
+}
+//------------------------------------------ Message function start------------------------------------//
+const [message,setMessage]=useState('')
 
-
-
+// Handle msg func start
+const handlemsg = ()=>{
+ set(push(ref(db, 'allMsg/')),{
+      senderId:     currentUserInfo.uid,
+      receiverId:   chatUserInfo.friendId, 
+      msg:          message, 
+ })
+}
   return (
     <>
     {
@@ -90,16 +97,17 @@ console.log(currentUserInfo?.displayName)
         </div>
       </div>
 
-      {/* Input bar */}
+      {/* Message Input bar */}
       <div className="p-3 bg-white border-t border-gray-300 flex items-center">
         <input
+        onChange={(e)=>setMessage(e.target.value)}
           type="text"
           placeholder="Type a message"
           className="flex-1 border border-gray-300 rounded-full px-4 py-2 text-sm outline-none focus:border-green-500"
         />
         <button 
-       
-         className="ml-2 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full">
+         onClick={handlemsg}
+         className="ml-2 bg-green-500 hover:bg-green-600 text-white p-3 rounded-full cursor-pointer">
           <FaPaperPlane size={16} />
         </button>
       </div>
