@@ -43,6 +43,7 @@ const handlemsg = ()=>{
       senderId:     currentUserInfo.uid,
       receiverId:   chatUserInfo.friendId, 
       msg:          message, 
+      msgTime: new Date().toLocaleString()
  })
  setMessage('')
 }
@@ -100,10 +101,10 @@ console.log(allMsgDisplay)
            allMsgDisplay.map((item)=>(
             item.data.senderId == currentUserInfo.uid ? 
       // receiver start
-        <div className="flex justify-end">
+        <div className="flex justify-end ">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-green-500 text-white">
           {item.data.msg}
-            <div className="text-[10px] text-gray-200 mt-1">10:31 AM</div>
+            <div className="text-[10px] text-gray-200 mt-1">{item.data.msgTime}</div>
           </div>
         </div>
       // receiver end
@@ -112,7 +113,7 @@ console.log(allMsgDisplay)
         <div className="flex justify-start">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-white text-gray-800">
               {item.data.msg}
-            <div className="text-[10px] text-gray-400 mt-1">10:30 AM</div>
+            <div className="text-[10px] text-gray-400 mt-1">{item.data.msgTime}</div>
           </div>
         </div>
        // sender end  
