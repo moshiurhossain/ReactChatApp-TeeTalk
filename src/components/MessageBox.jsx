@@ -51,14 +51,20 @@ const [allMsgDisplay,setAllMsgDisplay]=useState([])
 useEffect(()=>{
   onValue(ref(db,'allMsg'),(allMessage)=>{
     let array =[]
-    console.log(allMessage.val())
+
     allMessage.forEach((item)=>{
-       array.push({data:item.val(),key:item.key})
+
+      if(item.val().senderId == currentUserInfo.uid && item.val().receiverId == chatuser.friendId ){
+
+         array.push({data:item.val(),key:item.key})
+      }else if(item.val().receiverId == currentUserInfo.uid && item.val().senderId == chatuser.friendId ){
+         array.push({data:item.val(),key:item.key})
+      }
       //  .....
     })
     setAllMsgDisplay(array)
   })
-},[])
+},[chatuser])
 console.log(allMsgDisplay)
   return (
     <>
