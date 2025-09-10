@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaUserCircle, FaPaperPlane } from "react-icons/fa";
 import { IoIosArrowBack } from "react-icons/io";
 import { useDispatch, useSelector } from "react-redux";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
-import { getDatabase, push, ref, remove, set } from "firebase/database";
+import { getDatabase, onValue, push, ref, remove, set } from "firebase/database";
 
 
 
@@ -37,7 +37,7 @@ const handleBlock =()=>{
 //------------------------------------------ Message function start------------------------------------//
 const [message,setMessage]=useState('')
 
-// Handle msg func start
+// Handle send msg func start
 const handlemsg = ()=>{
  set(push(ref(db, 'allMsg/')),{
       senderId:     currentUserInfo.uid,
@@ -46,6 +46,20 @@ const handlemsg = ()=>{
  })
  setMessage('')
 }
+// msg display start
+const [allMsgDisplay,setAllMsgDisplay]=useState([])
+useEffect(()=>{
+  onValue(ref(db,'allMsg'),(allMessage)=>{
+    let array =[]
+    console.log(allMessage.val())
+    allMessage.forEach((item)=>{
+       array.push({data:item.val(),key:item.key})
+      //  .....
+    })
+    setAllMsgDisplay(array)
+  })
+},[])
+console.log(allMsgDisplay)
   return (
     <>
     {
@@ -76,26 +90,30 @@ const handlemsg = ()=>{
 
       {/* Messages area */}
       <div className="flex-1 overflow-y-auto bg-gray-100 p-4 space-y-2">
-        <div className="flex justify-start">
-          <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-white text-gray-800">
-            Hey, how are you?
-            <div className="text-[10px] text-gray-400 mt-1">10:30 AM</div>
-          </div>
-        </div>
-
+        {
+           allMsgDisplay.map((item)=>(
+            item.data.senderId == currentUserInfo.uid ? 
+      // receiver start
         <div className="flex justify-end">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-green-500 text-white">
-            I’m good, thanks! How about you?
+          {item.data.msg}
             <div className="text-[10px] text-gray-200 mt-1">10:31 AM</div>
           </div>
         </div>
-
+      // receiver end
+      :
+      // sender start
         <div className="flex justify-start">
           <div className="px-4 py-2 rounded-lg max-w-xs text-sm shadow bg-white text-gray-800">
-            Doing great 😄
-            <div className="text-[10px] text-gray-400 mt-1">10:32 AM</div>
+              {item.data.msg}
+            <div className="text-[10px] text-gray-400 mt-1">10:30 AM</div>
           </div>
         </div>
+       // sender end  
+           ))
+        }
+
+     
       </div>
 
       {/* Message Input bar */}
