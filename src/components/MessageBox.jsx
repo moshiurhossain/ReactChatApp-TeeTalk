@@ -44,6 +44,7 @@ const handlemsg = ()=>{
       receiverId:   chatUserInfo.friendId, 
       msg:          message, 
  })
+ setMessage('')
 }
   return (
     <>
@@ -100,6 +101,7 @@ const handlemsg = ()=>{
       {/* Message Input bar */}
       <div className="p-3 bg-white border-t border-gray-300 flex items-center">
         <input
+        value={message}
         onChange={(e)=>setMessage(e.target.value)}
           type="text"
           placeholder="Type a message"
